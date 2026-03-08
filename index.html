@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kad Raya</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Marhey:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="scene-wrap">
+      <section id="intro-scene" class="scene active" aria-live="polite">
+        <div class="star-layer" aria-hidden="true"></div>
+        <div class="intro-content">
+          <button id="moon-button" class="moon-button" aria-label="Click crescent moon to continue">
+            <span class="crescent"></span>
+          </button>
+          <h1 class="headline">Malam Suci Ramadan</h1>
+          <p class="subline">Klik bulan sabit untuk membuka kad ucapan.</p>
+        </div>
+      </section>
+
+      <section id="celebration-scene" class="scene" aria-live="polite">
+        <div class="ornament-row" aria-hidden="true">
+          <span class="ornament"></span>
+          <span class="ornament"></span>
+          <span class="ornament"></span>
+          <span class="ornament"></span>
+          <span class="ornament"></span>
+        </div>
+
+        <div class="mosque-ground" aria-hidden="true">
+          <div class="mosque">
+            <span class="dome main"></span>
+            <span class="dome left"></span>
+            <span class="dome right"></span>
+            <span class="tower t1"></span>
+            <span class="tower t2"></span>
+            <span class="tower t3"></span>
+            <span class="tower t4"></span>
+          </div>
+        </div>
+
+        <article id="book-card" class="book-card" aria-label="Kad ucapan Hari Raya">
+          <h2>Selamat Hari Raya</h2>
+          <p id="typewriter" class="typewriter"></p>
+        </article>
+
+        <button id="song-toggle" class="song-toggle" type="button">▶ Mainkan Lagu</button>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
