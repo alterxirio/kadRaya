@@ -12,20 +12,18 @@ body {
   font-family: "Marhey", system-ui, sans-serif;
   background: radial-gradient(circle at 20% 20%, #213d87 0%, var(--night) 45%, #031132 100%);
   color: #fff;
+  overflow: hidden;
 }
 
 .scene-wrap {
+  width: 100vw;
   min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: 1rem;
 }
 
 .scene {
   position: relative;
-  width: min(1100px, 100%);
-  min-height: min(760px, calc(100vh - 2rem));
-  border-radius: 18px;
+  width: 100vw;
+  min-height: 100vh;
   overflow: hidden;
   border: 2px solid rgba(255, 255, 255, 0.15);
   display: none;
@@ -73,7 +71,7 @@ body {
 .intro-content {
   position: relative;
   z-index: 2;
-  min-height: inherit;
+  min-height: 100vh;
   display: grid;
   place-content: center;
   justify-items: center;
@@ -123,7 +121,7 @@ body {
   animation: sceneFadeIn 1s ease forwards;
 }
 
-.book-card {
+.book-spine {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -153,11 +151,11 @@ body {
   margin: 0;
   font-size: clamp(1rem, 2vw, 1.2rem);
   line-height: 1.75;
-  border-right: 2px solid #0a1f4d;
   min-height: 7.5rem;
   padding-right: 6px;
   white-space: pre-wrap;
   overflow: hidden;
+  border-right: 2px solid #0a1f4d;
 }
 
 .song-toggle,
