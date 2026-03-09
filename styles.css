@@ -25,6 +25,7 @@ body {
   width: 100vw;
   min-height: 100vh;
   overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.15);
   display: none;
 }
 
@@ -33,7 +34,7 @@ body {
 }
 
 #intro-scene {
-  background: #071a44;
+  background: linear-gradient(180deg, #0d2a6a 0%, #071a44 100%);
   opacity: 1;
   transition: opacity 850ms ease;
 }
@@ -51,23 +52,20 @@ body {
 }
 
 .star-layer {
-  background-image: url("media/staryry.png");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  opacity: 0.98;
+  background: url("media/staryry.png") center/cover no-repeat;
+  opacity: 0.95;
 }
 
 .star-layer::before {
   background-image: radial-gradient(circle, rgba(255, 255, 255, 0.6) 1px, transparent 1px);
   background-size: 56px 56px;
-  opacity: 0.23;
+  opacity: 0.25;
 }
 
 .star-layer::after {
   background-image: radial-gradient(circle, rgba(255, 255, 255, 0.8) 1px, transparent 1px);
   background-size: 94px 94px;
-  opacity: 0.12;
+  opacity: 0.15;
 }
 
 .intro-content {
@@ -113,10 +111,9 @@ body {
 }
 
 #celebration-scene {
-  background-image: linear-gradient(rgba(5, 17, 48, 0.34), rgba(5, 17, 48, 0.5)), url("media/main.png");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  padding: 1.5rem;
+  background: linear-gradient(rgba(5, 17, 48, 0.48), rgba(5, 17, 48, 0.68)),
+    url("media/main.png") center/cover no-repeat;
   opacity: 0;
 }
 
@@ -124,55 +121,25 @@ body {
   animation: sceneFadeIn 1s ease forwards;
 }
 
-.book-card {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -42%) perspective(1200px) rotateX(-70deg) rotateY(-24deg) scale(0.8);
-  transform-origin: center bottom;
-  opacity: 0;
-  width: min(900px, 90vw);
-  height: min(440px, 62vh);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border-radius: 14px;
-  box-shadow: 0 30px 50px rgba(0, 0, 0, 0.45);
-}
-
-.book-card.show {
-  animation: openBook 1.4s cubic-bezier(0.2, 0.9, 0.18, 1) forwards;
-}
-
-.book-page {
-  position: relative;
-  padding: clamp(1.2rem, 2vw, 2.2rem);
-  background: linear-gradient(180deg, #fdf7df 0%, #f6e8bc 100%);
-  color: #0a1f4d;
-}
-
-.left-page {
-  border-radius: 12px 0 0 12px;
-  border-right: 1px solid rgba(174, 125, 44, 0.38);
-  box-shadow: inset -12px 0 24px rgba(0, 0, 0, 0.12);
-}
-
-.right-page {
-  border-radius: 0 12px 12px 0;
-  border-left: 1px solid rgba(174, 125, 44, 0.24);
-  box-shadow: inset 12px 0 22px rgba(0, 0, 0, 0.08);
-}
-
 .book-spine {
   position: absolute;
   left: 50%;
-  top: 0;
-  transform: translateX(-50%);
-  width: 26px;
-  height: 100%;
-  background: linear-gradient(180deg, #ad7f35 0%, #7f5621 100%);
-  border-left: 1px solid rgba(255, 255, 255, 0.22);
-  border-right: 1px solid rgba(0, 0, 0, 0.22);
-  z-index: 2;
+  top: 50%;
+  transform: translate(-50%, -40%) rotateX(-75deg) scale(0.8);
+  transform-origin: center bottom;
+  opacity: 0;
+  width: min(660px, 90%);
+  min-height: 220px;
+  background: linear-gradient(180deg, #fdf6dc 0%, #f5e5b6 100%);
+  color: #0a1f4d;
+  border-radius: 16px;
+  border: 2px solid rgba(174, 125, 44, 0.35);
+  padding: 1.4rem 1.7rem;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
+}
+
+.book-card.show {
+  animation: openBook 1.25s cubic-bezier(0.22, 0.9, 0.19, 1) forwards;
 }
 
 .book-card h2 {
@@ -244,14 +211,14 @@ body {
 @keyframes openBook {
   0% {
     opacity: 0;
-    transform: translate(-50%, -42%) perspective(1200px) rotateX(-70deg) rotateY(-24deg) scale(0.8);
+    transform: translate(-50%, -40%) rotateX(-75deg) scale(0.76);
   }
-  60% {
+  65% {
     opacity: 1;
-    transform: translate(-50%, -50%) perspective(1200px) rotateX(6deg) rotateY(3deg) scale(1.02);
+    transform: translate(-50%, -51%) rotateX(8deg) scale(1.03);
   }
   100% {
     opacity: 1;
-    transform: translate(-50%, -50%) perspective(1200px) rotateX(0) rotateY(0) scale(1);
+    transform: translate(-50%, -50%) rotateX(0) scale(1);
   }
 }
