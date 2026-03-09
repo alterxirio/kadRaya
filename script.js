@@ -4,6 +4,7 @@ const moonButton = document.getElementById("moon-button");
 const bookCard = document.getElementById("book-card");
 const typewriter = document.getElementById("typewriter");
 const songToggle = document.getElementById("song-toggle");
+const closeButton = document.getElementById("close-button");
 
 const greetingText =
   "Semoga Syawal ini membawa rahmat, kebahagiaan,\nkeampunan dan rezeki yang melimpah.\n\nMaaf zahir & batin daripada kami sekeluarga. 🌙✨";
@@ -13,15 +14,37 @@ let typingTimer;
 let audioContext;
 let musicInterval;
 let isPlaying = false;
+let transitionLocked = false;
+
+function resetCardState() {
+  clearInterval(typingTimer);
+  typewriter.textContent = "";
+  typingIndex = 0;
+  bookCard.classList.remove("show");
+  closeButton.classList.remove("show");
+}
 
 function showCelebration() {
-  introScene.classList.remove("active");
-  celebrationScene.classList.add("active");
+  if (transitionLocked) return;
+  transitionLocked = true;
+  resetCardState();
+
+  introScene.classList.add("fade-out");
 
   setTimeout(() => {
-    bookCard.classList.add("show");
-    startTypewriter();
-  }, 600);
+    introScene.classList.remove("active");
+    celebrationScene.classList.add("active", "fade-in");
+
+    setTimeout(() => {
+      bookCard.classList.add("show");
+      startTypewriter();
+      transitionLocked = false;
+    }, 3000);
+  }, 850);
+}
+
+function showCloseButton() {
+  closeButton.classList.add("show");
 }
 
 function startTypewriter() {
@@ -32,6 +55,7 @@ function startTypewriter() {
   typingTimer = setInterval(() => {
     if (typingIndex >= greetingText.length) {
       clearInterval(typingTimer);
+      showCloseButton();
       return;
     }
 
@@ -89,6 +113,13 @@ function stopSong() {
   songToggle.textContent = "▶ Mainkan Lagu";
 }
 
+function closeCard() {
+  celebrationScene.classList.remove("active", "fade-in");
+  introScene.classList.add("active");
+  requestAnimationFrame(() => introScene.classList.remove("fade-out"));
+  resetCardState();
+}
+
 moonButton.addEventListener("click", () => {
   showCelebration();
   if (!isPlaying) {
@@ -104,3 +135,5 @@ songToggle.addEventListener("click", () => {
 
   startSong();
 });
+
+closeButton.addEventListener("click", closeCard);
