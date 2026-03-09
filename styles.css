@@ -53,9 +53,12 @@ body {
   content: "";
 }
 
-.star-layer {
-  background: url("media/staryry.png") center/cover no-repeat;
-  opacity: 0.95;
+#star {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
 }
 
 .star-layer::before {
