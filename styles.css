@@ -15,6 +15,33 @@ body {
   overflow: hidden;
 }
 
+
+.rotate-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(2px);
+  z-index: 999;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.rotate-overlay p {
+  margin: 0;
+  font-size: clamp(1.1rem, 4vw, 1.7rem);
+  color: #f7f3df;
+}
+
+body.require-landscape .rotate-overlay {
+  display: grid;
+}
+
+body.require-landscape .scene-wrap {
+  visibility: hidden;
+}
+
 .scene-wrap {
   width: 100vw;
   min-height: 100vh;
@@ -330,5 +357,84 @@ body {
   100% {
     opacity: 1;
     transform: translate(-50%, -50%) rotateX(0) scale(1);
+  }
+}
+
+
+@media (max-width: 768px) {
+  .scene {
+    border-width: 1px;
+  }
+
+  .intro-content {
+    gap: 0.75rem;
+    padding: 1.25rem;
+  }
+
+  .moon-button {
+    width: clamp(145px, 42vw, 220px);
+  }
+
+  .headline {
+    max-width: 95%;
+    font-size: clamp(1.2rem, 6vw, 1.8rem);
+  }
+
+  .subline {
+    font-size: clamp(0.9rem, 4vw, 1.05rem);
+  }
+
+  #celebration-scene {
+    padding: 1rem;
+  }
+
+  .book-card {
+    width: min(96vw, 520px);
+    min-height: 180px;
+    padding: 1rem;
+    border-radius: 12px;
+  }
+
+  .typewriter {
+    min-height: 5.8rem;
+    line-height: 1.5;
+    font-size: clamp(0.9rem, 3.7vw, 1.05rem);
+  }
+
+  .song-toggle,
+  .close-button {
+    bottom: calc(0.75rem + env(safe-area-inset-bottom));
+    padding: 0.52rem 0.85rem;
+    font-size: 0.88rem;
+  }
+
+  .song-toggle {
+    right: 0.75rem;
+  }
+
+  .close-button {
+    left: 0.75rem;
+  }
+}
+
+@media (max-height: 500px) {
+  .intro-content {
+    gap: 0.45rem;
+    padding-block: 0.75rem;
+  }
+
+  .headline {
+    font-size: clamp(1.05rem, 3.6vw, 1.3rem);
+  }
+
+  .book-card {
+    top: 47%;
+    min-height: 155px;
+    padding: 0.85rem 1rem;
+  }
+
+  .typewriter {
+    min-height: 4.2rem;
+    line-height: 1.35;
   }
 }
