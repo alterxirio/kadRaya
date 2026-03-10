@@ -124,7 +124,7 @@ body {
   animation: sceneFadeIn 1s ease forwards;
 }
 
-.book-spine {
+.book-card {
   position: absolute;
   left: 50%;
   top: 50%;
