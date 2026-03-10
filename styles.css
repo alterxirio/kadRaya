@@ -33,6 +33,30 @@ body {
   display: block;
 }
 
+#prelude-scene {
+  background: #000;
+  display: none;
+  place-items: center;
+}
+
+#prelude-scene.active {
+  display: grid;
+}
+
+.prelude-text {
+  margin: 0;
+  opacity: 0;
+  text-align: center;
+  font-family: "Cinzel", serif;
+  letter-spacing: 0.06em;
+  font-size: clamp(1.4rem, 3.4vw, 2.8rem);
+  animation: textFadeCycle 3.8s ease-in-out forwards;
+}
+
+#prelude-scene.fade-out {
+  animation: preludeOut 900ms ease forwards;
+}
+
 #intro-scene {
   background: linear-gradient(180deg, #0d2a6a 0%, #071a44 100%);
   opacity: 1;
@@ -69,6 +93,7 @@ body {
   background-image: radial-gradient(circle, rgba(255, 255, 255, 0.8) 1px, transparent 1px);
   background-size: 94px 94px;
   opacity: 0.15;
+  animation: twinkleShift 4.4s ease-in-out infinite alternate;
 }
 
 .intro-content {
@@ -84,14 +109,21 @@ body {
 }
 
 .moon-button {
-  width: clamp(150px, 20vw, 230px);
+  width: clamp(200px, 28vw, 300px);
   aspect-ratio: 1;
   border: none;
   border-radius: 50%;
   background: transparent;
   cursor: pointer;
   filter: drop-shadow(0 0 18px rgba(241, 207, 95, 0.55));
-  animation: float 3.4s ease-in-out infinite;
+  opacity: 0;
+  transform: scale(0.7);
+  pointer-events: none;
+}
+
+#intro-scene.moon-visible .moon-button {
+  animation: moonAppear 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards, float 3.4s ease-in-out 1.6s infinite;
+  pointer-events: auto;
 }
 
 .moon-image {
@@ -100,11 +132,27 @@ body {
   object-fit: contain;
 }
 
+.headline,
+.subline {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+#intro-scene.text-visible .headline,
+#intro-scene.text-visible .subline {
+  animation: copyAppear 1.1s ease forwards;
+}
+
+#intro-scene.text-visible .subline {
+  animation-delay: 220ms;
+}
+
 .headline {
   margin: 0;
   font-family: "Cinzel", serif;
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  letter-spacing: 0.06em;
+  font-size: clamp(1.5rem, 3.3vw, 2.6rem);
+  letter-spacing: 0.03em;
+  max-width: 900px;
 }
 
 .subline {
@@ -190,6 +238,65 @@ body {
 .close-button.show {
   opacity: 1;
   pointer-events: auto;
+}
+
+@keyframes textFadeCycle {
+  0% {
+    opacity: 0;
+  }
+  18% {
+    opacity: 1;
+  }
+  72% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes preludeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes moonAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0.68);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes copyAppear {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes twinkleShift {
+  from {
+    opacity: 0.1;
+  }
+  to {
+    opacity: 0.22;
+  }
 }
 
 @keyframes float {

@@ -1,3 +1,4 @@
+const preludeScene = document.getElementById("prelude-scene");
 const introScene = document.getElementById("intro-scene");
 const celebrationScene = document.getElementById("celebration-scene");
 const moonButton = document.getElementById("moon-button");
@@ -15,6 +16,25 @@ let audioContext;
 let musicInterval;
 let isPlaying = false;
 let transitionLocked = false;
+
+function runIntroSequence() {
+  setTimeout(() => {
+    preludeScene.classList.add("fade-out");
+
+    setTimeout(() => {
+      preludeScene.classList.remove("active");
+      introScene.classList.add("active");
+
+      requestAnimationFrame(() => {
+        introScene.classList.add("moon-visible");
+
+        setTimeout(() => {
+          introScene.classList.add("text-visible");
+        }, 1200);
+      });
+    }, 900);
+  }, 3900);
+}
 
 function resetCardState() {
   clearInterval(typingTimer);
@@ -137,3 +157,5 @@ songToggle.addEventListener("click", () => {
 });
 
 closeButton.addEventListener("click", closeCard);
+
+runIntroSequence();
