@@ -6,6 +6,7 @@ const bookCard = document.getElementById("book-card");
 const typewriter = document.getElementById("typewriter");
 const songToggle = document.getElementById("song-toggle");
 const closeButton = document.getElementById("close-button");
+const rotateOverlay = document.getElementById("rotate-overlay");
 
 // Select the audio element from your HTML
 const rayaSong = document.querySelector("audio");
@@ -16,6 +17,13 @@ let typingIndex = 0;
 let typingTimer;
 let isPlaying = false;
 let transitionLocked = false;
+
+
+function updateOrientationOverlay() {
+    const isPortraitMobile = window.matchMedia("(max-width: 900px) and (orientation: portrait)").matches;
+    document.body.classList.toggle("require-landscape", isPortraitMobile);
+    rotateOverlay.setAttribute("aria-hidden", String(!isPortraitMobile));
+}
 
 // --- Scene Logic ---
 
@@ -126,4 +134,7 @@ songToggle.addEventListener("click", () => {
 closeButton.addEventListener("click", closeCard);
 
 // Start the whole app
+updateOrientationOverlay();
+window.addEventListener("resize", updateOrientationOverlay);
+window.addEventListener("orientationchange", updateOrientationOverlay);
 runIntroSequence();
