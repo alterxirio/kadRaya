@@ -22,9 +22,7 @@ let transitionLocked = false;
 function updateOrientationOverlay() {
     const isPortraitMobile = window.matchMedia("(max-width: 900px) and (orientation: portrait)").matches;
     document.body.classList.toggle("require-landscape", isPortraitMobile);
-    if (rotateOverlay) {
-        rotateOverlay.setAttribute("aria-hidden", String(!isPortraitMobile));
-    }
+    rotateOverlay.setAttribute("aria-hidden", String(!isPortraitMobile));
 }
 
 // --- Scene Logic ---
